@@ -9,6 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const resetButton = document.getElementById("reset-button"); 
     const mobileNavButtons = document.querySelectorAll("#mobile-nav .nav-item"); 
     
+    // 필터 영역 가시성 제어를 위한 요소
+    const filterContainer = document.querySelector('.filter-container');
+    const mainBannerContainer = document.querySelector('.main-banner-container');
+    const headerParagraph = document.querySelector('header p');
+    
     let allData = [];
     let selectedCategory = null;
     let selectedPeriod = 'all'; 
@@ -17,11 +22,23 @@ document.addEventListener("DOMContentLoaded", () => {
     let selectedStatusFilter = 'all'; 
 
     // --- 슬라이더 관련 변수 ---
-    const sliderImages = [
-        { url: 'images/sungsu.png', alt: '성수 핑크팝업', link: '#' }, 
-        { url: 'images/부산.jpg', alt: '부산 불꽃축제', link: '#' },
-        { url: 'images/대구.jpg', alt: '대구 여름 팝업', link: '#' }
+    const availableSliderImages = [
+        { url: 'images/sungsu.png', alt: '성수 핑크팝업', id: 1 }, 
+        { url: 'images/부산.jpg', alt: '부산 불꽃축제', id: 2 },
+        { url: 'images/대구.jpg', alt: '대구 여름 팝업', id: 3 },
+        { url: 'images/신촌.jpg', alt: '신촌 물총 축제', id: 4 },
+        { url: 'images/yeouido.jpg', alt: '더현대 크리스마스 팝업', id: 6 },
+        { url: 'images/jinhae.jpg', alt: '진해 군항제', id: 7 },
+        { url: 'images/jeju.jpg', alt: '제주 감성 소품샵 팝업', id: 8 },
+        { url: 'images/pohang.jpg', alt: '포항 불빛축제', id: 9 },
+        { url: 'images/jamsil.jpg', alt: '잠실 뷰티 체험존', id: 10 },
+        { url: 'images/gangneung.jpg', alt: '강릉 커피축제', id: 11 },
+        { url: 'images/daejeon.jpg', alt: '대전 성심당 팝업', id: 12 },
+        { url: 'images/icheon.jpg', alt: '이천 도자기 축제', id: 13 },
+        { url: 'images/myeongdong.jpg', alt: '명동 K-패션 팝업', id: 14 },
+        { url: 'images/muju.jpg', alt: '무주 반딧불 축제', id: 15 }
     ];
+    let selectedSliderImages = []; 
     let currentSlide = 0;
     let slideInterval; 
     const sliderTrack = document.getElementById('slider-track');
@@ -29,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextButton = document.querySelector('.slider-control.next');
     // -------------------------
 
-    // 2. 찜 목록 관리 함수
+    // 2. 찜 목록 관리 함수 (기존과 동일)
     const loadFavorites = () => {
         const storedFavorites = localStorage.getItem('eventFavorites');
         favorites = storedFavorites ? JSON.parse(storedFavorites) : [];
@@ -50,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderEvents(); 
     };
 
-    // 3. 데이터 로드 함수
+    // 3. 데이터 로드 함수 (기존과 동일)
     async function loadData() {
         try {
             const res = await fetch('data.json');
@@ -62,14 +79,19 @@ document.addEventListener("DOMContentLoaded", () => {
             allData.sort((a, b) => a.title.localeCompare(b.title));
             loadFavorites();
             sortSelect.value = selectedSort; 
-            renderEvents();
+            
+            // 데이터 로드 완료 후 슬라이더와 이벤트 목록 초기화
+            selectRandomSliderImages(); 
+            initSlider(); 
+            renderEvents(); 
+
         } catch (error) {
             console.error("데이터 로딩 중 치명적인 오류 발생:", error);
             eventList.innerHTML = `<p style="text-align:center;">데이터를 불러오는 데 문제가 발생했습니다. (Console 확인 필요)</p>`;
         }
     }
 
-    // 4. 날짜 헬퍼 함수
+    // 4. 날짜 헬퍼 함수 (기존과 동일)
     const parseDate = (dateStr) => {
         const parts = dateStr.includes('~') ? dateStr.split('~') : [dateStr, dateStr];
         const startDate = new Date(parts[0].trim());
@@ -104,22 +126,69 @@ document.addEventListener("DOMContentLoaded", () => {
         end.setHours(23, 59, 59, 999); 
         return { start, end };
     };
+    
+    // 5. 복합 정렬 함수 (기존과 동일)
+    const sortEventsByStatusAndDate = (a, b) => {
+        const statusA = getEventStatus(a);
+        const statusB = getEventStatus(b);
 
-    // 5. 슬라이더 로직
+        const getStatusOrder = (status) => {
+            if (status === '진행 중') return 1;
+            if (status === '예정') return 2;
+            return 3;
+        };
+
+        const orderA = getStatusOrder(statusA);
+        const orderB = getStatusOrder(statusB);
+
+        if (orderA !== orderB) {
+            return orderA - orderB;
+        }
+        
+        const dateA = parseDate(a.date);
+        const dateB = parseDate(b.date);
+
+        if (statusA === '진행 중') { return dateA.endDate - dateB.endDate; } 
+        else if (statusA === '예정') { return dateA.startDate - dateB.startDate; } 
+        else { return dateB.endDate - dateA.endDate; }
+    };
+    
+    // 6. 슬라이더 로직 (기존과 동일)
+    const selectRandomSliderImages = () => {
+        if (allData.length === 0) return;
+        
+        const validEvents = allData.filter(e => e.image && e.id);
+        if (validEvents.length === 0) return;
+
+        const eventImages = validEvents.map(event => ({
+            url: event.image,
+            alt: event.title,
+            id: event.id
+        }));
+
+        const shuffled = [...eventImages].sort(() => 0.5 - Math.random());
+        selectedSliderImages = shuffled.slice(0, 3);
+        
+        selectedSliderImages = selectedSliderImages.map(img => ({
+            ...img,
+            link: `detail.html?id=${img.id}` 
+        }));
+    };
+
     const moveSlide = (index) => {
-        if (!sliderTrack || !sliderTrack.querySelector('.slide-item')) return;
+        if (selectedSliderImages.length === 0 || !sliderTrack || !sliderTrack.querySelector('.slide-item')) return;
         const slideWidth = sliderTrack.querySelector('.slide-item').offsetWidth;
         sliderTrack.style.transform = `translateX(-${index * slideWidth}px)`;
         currentSlide = index;
     };
     const showNextSlide = () => {
         let nextIndex = currentSlide + 1;
-        if (nextIndex >= sliderImages.length) { nextIndex = 0; }
+        if (nextIndex >= selectedSliderImages.length) { nextIndex = 0; }
         moveSlide(nextIndex);
     };
     const showPrevSlide = () => {
         let prevIndex = currentSlide - 1;
-        if (prevIndex < 0) { prevIndex = sliderImages.length - 1; }
+        if (prevIndex < 0) { prevIndex = selectedSliderImages.length - 1; }
         moveSlide(prevIndex);
     };
     const initSlider = () => {
@@ -127,8 +196,9 @@ document.addEventListener("DOMContentLoaded", () => {
              console.error("슬라이더 HTML 요소를 찾을 수 없습니다.");
              return;
         }
-
-        sliderTrack.innerHTML = sliderImages.map(img => `
+        
+        // selectedSliderImages 배열을 사용하여 HTML 생성
+        sliderTrack.innerHTML = selectedSliderImages.map(img => `
             <div class="slide-item" style="background-image: url('${img.url}')" onclick="window.location.href='${img.link}'">
             </div>
         `).join('');
@@ -136,25 +206,39 @@ document.addEventListener("DOMContentLoaded", () => {
         nextButton.addEventListener('click', showNextSlide);
         prevButton.addEventListener('click', showPrevSlide);
         
-        slideInterval = setInterval(showNextSlide, 5000); 
-        const sliderContainer = document.querySelector('.image-slider');
-        if (sliderContainer) {
-             sliderContainer.addEventListener('mouseover', () => clearInterval(slideInterval));
-             sliderContainer.addEventListener('mouseleave', () => {
-                 slideInterval = setInterval(showNextSlide, 5000);
-             });
+        if (selectedSliderImages.length > 1) {
+             slideInterval = setInterval(showNextSlide, 5000); 
+             prevButton.style.display = 'block';
+             nextButton.style.display = 'block';
+             const sliderContainer = document.querySelector('.image-slider');
+             if (sliderContainer) {
+                 sliderContainer.addEventListener('mouseover', () => clearInterval(slideInterval));
+                 sliderContainer.addEventListener('mouseleave', () => {
+                     slideInterval = setInterval(showNextSlide, 5000);
+                 });
+             }
+        } else {
+             prevButton.style.display = 'none';
+             nextButton.style.display = 'none';
         }
     };
 
-    // 6. 이벤트 렌더링 함수
+    // 7. 이벤트 렌더링 함수
     function renderEvents() {
-        // 뷰 클래스 토글
+        
+        // ✨✨✨ 뷰 클래스 토글 및 요소 가시성 제어 (CSS를 보조)
         if (selectedStatusFilter === 'ended') {
              document.body.classList.add('mydining-view');
+             if (filterContainer) filterContainer.style.display = 'none';
+             if (mainBannerContainer) mainBannerContainer.style.display = 'none';
+             if (headerParagraph) headerParagraph.style.display = 'none';
         } else {
              document.body.classList.remove('mydining-view');
+             if (filterContainer) filterContainer.style.display = '';
+             if (mainBannerContainer) mainBannerContainer.style.display = '';
+             if (headerParagraph) headerParagraph.style.display = '';
         }
-        
+
         let filtered = [...allData];
 
         // 필터링 로직
@@ -196,7 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // ✨✨✨ 홈 화면 콘텐츠 분리 로직 (세 구역 렌더링)
+        // 홈 화면 콘텐츠 분리 로직 (세 구역 렌더링)
         let finalHtml = '';
         const isDefaultView = !selectedCategory && selectedPeriod === 'all' && region === 'all' && !keyword && selectedStatusFilter === 'all';
 
@@ -245,14 +329,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         if (isDefaultView) {
-            // 1. 인기 TOP 4 (가장 최근 등록순 4개로 가정)
-            const top4 = [...allData].slice(0, 4);
-            // 2. 예정 이벤트 (upcoming)
-            const upcoming = allData.filter(e => getEventStatus(e) === '예정').slice(0, 8); 
-            // 3. 전체 이벤트 (나머지)
-            const remaining = allData;
+            const defaultSortedEvents = [...allData].sort(sortEventsByStatusAndDate);
 
-            // HTML 섹션 구성
+            const top4 = [...defaultSortedEvents].slice(0, 4);
+            const upcoming = defaultSortedEvents.filter(e => getEventStatus(e) === '예정').slice(0, 8); 
+            const remaining = defaultSortedEvents;
+
             finalHtml += `<h2 class="content-section-title">🔥 인기 TOP 4 이벤트</h2>`;
             finalHtml += `<div class="event-list-grid">${createEventHtml(top4)}</div>`;
 
@@ -264,7 +346,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             eventList.innerHTML = finalHtml;
         } else {
-            // 필터가 적용된 경우: 단일 목록으로 표시
             const isListView = selectedStatusFilter === 'ended';
             eventList.innerHTML = `<div class="event-list-grid">${createEventHtml(filtered, isListView)}</div>`;
         }
@@ -293,7 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 7. 필터 초기화 함수
+    // 8. 이벤트 리스너 등록 및 초기화
     const resetFilters = () => {
         selectedCategory = null;
         selectedPeriod = 'all';
@@ -319,7 +400,6 @@ document.addEventListener("DOMContentLoaded", () => {
         renderEvents();
     };
 
-    // 8. 이벤트 리스너 등록
     categoryButtons.forEach(button => {
         button.addEventListener("click", () => {
             const clickedCategory = button.getAttribute("data-category");
@@ -375,7 +455,6 @@ document.addEventListener("DOMContentLoaded", () => {
                  resetFilters();
                  
             } else if (nav === 'nearby') {
-                 // map.html로 이동 (HTML에서 href="map.html"로 이미 설정됨)
                  window.location.href = 'map.html'; 
             }
         });
@@ -400,6 +479,8 @@ document.addEventListener("DOMContentLoaded", () => {
     searchInput.addEventListener("input", renderEvents);
 
     // 9. 페이지 로드 시 초기화
-    initSlider();
-    loadData();
+    loadData().then(() => {
+        selectRandomSliderImages(); 
+        initSlider(); 
+    });
 });
