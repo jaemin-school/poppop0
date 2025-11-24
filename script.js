@@ -80,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
             loadFavorites();
             sortSelect.value = selectedSort; 
             
-            // 데이터 로드 완료 후 슬라이더와 이벤트 목록 초기화
             selectRandomSliderImages(); 
             initSlider(); 
             renderEvents(); 
@@ -153,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else { return dateB.endDate - dateA.endDate; }
     };
     
-    // 6. 슬라이더 로직 (기존과 동일)
+    // 6. 슬라이더 로직
     const selectRandomSliderImages = () => {
         if (allData.length === 0) return;
         
@@ -167,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }));
 
         const shuffled = [...eventImages].sort(() => 0.5 - Math.random());
-        selectedSliderImages = shuffled.slice(0, 3);
+        selectedSliderImages = shuffled.slice(0, 4); // ✨ 4개 이미지 선택
         
         selectedSliderImages = selectedSliderImages.map(img => ({
             ...img,
@@ -207,14 +206,14 @@ document.addEventListener("DOMContentLoaded", () => {
         prevButton.addEventListener('click', showPrevSlide);
         
         if (selectedSliderImages.length > 1) {
-             slideInterval = setInterval(showNextSlide, 5000); 
+             slideInterval = setInterval(showNextSlide, 5000); // ✨ 5000ms (5초)로 설정
              prevButton.style.display = 'block';
              nextButton.style.display = 'block';
              const sliderContainer = document.querySelector('.image-slider');
              if (sliderContainer) {
                  sliderContainer.addEventListener('mouseover', () => clearInterval(slideInterval));
                  sliderContainer.addEventListener('mouseleave', () => {
-                     slideInterval = setInterval(showNextSlide, 5000);
+                     slideInterval = setInterval(showNextSlide, 5000); // ✨ 5000ms (5초)로 설정
                  });
              }
         } else {
@@ -223,10 +222,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // 7. 이벤트 렌더링 함수
+    // 7. 이벤트 렌더링 함수 (기존과 동일)
     function renderEvents() {
         
-        // ✨✨✨ 뷰 클래스 토글 및 요소 가시성 제어 (CSS를 보조)
+        // 뷰 클래스 토글 및 요소 가시성 제어
         if (selectedStatusFilter === 'ended') {
              document.body.classList.add('mydining-view');
              if (filterContainer) filterContainer.style.display = 'none';
@@ -241,7 +240,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let filtered = [...allData];
 
-        // 필터링 로직
         if (selectedStatusFilter === 'ended') { filtered = filtered.filter(e => getEventStatus(e) === '종료'); }
         if (selectedCategory) {
             if (selectedCategory === 'favorites') { filtered = filtered.filter(e => favorites.includes(e.id)); } 
@@ -263,7 +261,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // 정렬 로직
         const sortType = sortSelect.value;
         if (sortType === 'title_asc') { filtered.sort((a, b) => a.title.localeCompare(b.title)); } 
         else if (sortType === 'date_asc') { filtered.sort((a, b) => parseDate(a.date).startDate - parseDate(b.date).startDate); } 
