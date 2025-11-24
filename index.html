@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PopPop - 전국 팝업&축제 정보</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <h1>PoPPoP</h1>
+    <p>카테고리, 지역 또는 키워드로 원하는 행사를 찾아보세요</p>
+  </header>
+
+  <section class="main-banner-container">
+    <div class="side-ad-space left-ad">
+      <img src="images/1.png" alt="왼쪽 추천 이벤트 광고" class="ad-image">
+    </div>
+
+    <div class="image-slider">
+      <div id="slider-track" class="slider-track">
+      </div>
+      <button class="slider-control prev">❮</button>
+      <button class="slider-control next">❯</button>
+      <div id="slider-pagination" class="pagination"></div>
+    </div>
+    
+    <div class="side-ad-space right-ad">
+      <img src="images/2.png" alt="오른쪽 추천 이벤트 광고" class="ad-image">
+    </div>
+  </section>
+  
+  <section class="filter-container">
+    <div class="filter-row">
+      <select id="region-select">
+        <option value="all">📍 전체 지역</option>
+        <option value="서울">서울</option>
+        <option value="부산">부산</option>
+        <option value="대구">대구</option>
+      </select>
+
+      <input type="text" id="search-input" placeholder="검색어 입력 (예: 성수)">
+      
+      <select id="sort-select">
+        <option value="title_asc">제목순 (가나다순)</option>
+        <option value="date_asc">날짜순 (가까운 날짜순)</option>
+      </select>
+      
+      <button id="reset-button">🔄 초기화</button>
+      
+    </div>
+
+    <div class="categories-and-dates-row">
+        <div class="date-filters">
+            <button data-period="all" class="active">📅 전체 기간</button>
+            <button data-period="week">이번 주</button>
+            <button data-period="month">이번 달</button>
+        </div>
+
+        <div class="categories">
+            <button data-category="popup">🎪 팝업스토어</button>
+            <button data-category="festival">🎉 지역축제</button>
+          
+        </div>
+    </div>
+  </section>
+
+  <section id="event-list" class="hidden"></section>
+
+  <nav id="mobile-nav">
+    <a href="#" class="nav-item active" data-nav="home">
+        <i class="fas fa-home"></i>
+        <span>홈</span>
+    </a>
+    <a href="#" class="nav-item" data-nav="save">
+        <i class="far fa-bookmark"></i>
+        <span>찜</span>
+    </a>
+    <a href="map.html" class="nav-item" data-nav="nearby">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>내 주변</span>
+    </a>
+    <a href="#" class="nav-item" data-nav="mydining">
+        <i class="far fa-calendar-alt"></i>
+        <span>종료</span>
+    </a>
+    </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>

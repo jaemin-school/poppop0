@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>이벤트 상세 정보</title>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f36d5acb0b1d93c852f69939b608fdb3&libraries=services&autoload=false"></script>
+</head>
+<body>
+    <header>
+        <a href="index.html"><h1>PoPPoP</h1></a>
+    </header>
+
+    <main id="detail-container" class="detail-content-wrapper">
+        </main>
+    
+    <div id="map" style="width:100%;height:350px; margin: 20px 0; display: none;"></div>
+
+    <script src="detail.js"></script>
+    
+    <nav id="mobile-nav">
+      <a href="index.html" class="nav-item active" data-nav="home">
+          <i class="fas fa-home"></i>
+          <span>홈</span>
+      </a>
+      <a href="#" class="nav-item" data-nav="save">
+          <i class="far fa-bookmark"></i>
+          <span>찜</span>
+      </a>
+      <a href="map.html" class="nav-item" data-nav="nearby">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>내 주변</span>
+      </a>
+      <a href="#" class="nav-item" data-nav="mydining">
+          <i class="far fa-calendar-alt"></i>
+          <span>종료</span>
+      </a>
+      </nav>
+</body>
+</html>

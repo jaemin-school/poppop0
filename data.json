@@ -1,0 +1,169 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "title": "성수 핑크팝업",
+      "date": "2025-09-05 ~ 2025-09-30",
+      "location": "서울 성수동",
+      "category": "popup",
+      "image": "images/sungsu.png",
+      "description": "성수동에서 열리는 특별한 핑크 컨셉의 팝업스토어입니다. 다양한 포토존과 한정판 굿즈를 만나보세요!",
+      "lat": 37.5445,
+      "lng": 127.0565
+    },
+    {
+      "id": 2,
+      "title": "부산 불꽃축제",
+      "date": "2025-11-27",
+      "location": "부산 광안리",
+      "category": "festival",
+      "image": "images/부산.jpg",
+      "description": "광안리 해수욕장에서 펼쳐지는 환상적인 불꽃축제입니다. 여름밤을 화려하게 수놓을 불꽃쇼를 놓치지 마세요!",
+      "lat": 35.1537,
+      "lng": 129.1177
+    },
+    {
+      "id": 3,
+      "title": "대구 여름 팝업",
+      "date": "2025-10-15 ~ 2025-10-20",
+      "location": "대구 동성로",
+      "category": "popup",
+      "image": "images/대구.jpg",
+      "description": "대구 동성로의 핫플레이스에서 열리는 여름 팝업입니다. 시원한 이벤트와 다양한 볼거리가 준비되어 있어요.",
+      "lat": 35.8714,
+      "lng": 128.6014
+    },
+    {
+      "id": 4,
+      "title": "신촌 물총 축제",
+      "date": "2025-09-15 ~ 2025-10-05",
+      "location": "서울 신촌",
+      "category": "festival",
+      "image": "images/신촌.jpg",
+      "description": "무더위를 날려버릴 짜릿한 물총 축제! 친구들과 함께 신나게 물총 싸움을 즐겨보세요.",
+      "lat": 37.5599,
+      "lng": 126.9429
+    },
+    {
+      "id": 5,
+      "title": "홍대 물총 축제",
+      "date": "2025-12-01 ~ 2025-12-15",
+      "location": "서울 신촌",
+      "category": "festival",
+      "image": "images/신촌.jpg",
+      "description": "무더위를 날려버릴 짜릿한 물총 축제! 친구들과 함께 신나게 물총 싸움을 즐겨보세요.",
+      "lat": 37.5599,
+      "lng": 126.9429
+    },
+    {
+      "id": 6,
+      "title": "더현대 크리스마스 팝업",
+      "date": "2025-11-20 ~ 2025-12-31",
+      "location": "서울 여의도",
+      "category": "popup",
+      "image": "images/yeouido.jpg",
+      "description": "미리 만나는 크리스마스! 화려한 트리와 포토존, 그리고 한정판 굿즈를 만나보세요.",
+      "lat": 37.5255,
+      "lng": 126.9248
+    },
+    {
+      "id": 7,
+      "title": "진해 군항제",
+      "date": "2026-04-01 ~ 2026-04-10",
+      "location": "경남 진해구",
+      "category": "festival",
+      "image": "images/jinhae.jpg",
+      "description": "벚꽃이 만개하는 4월, 대한민국 최대의 벚꽃 축제에서 봄을 만끽하세요.",
+      "lat": 35.1584,
+      "lng": 128.6256
+    },
+    {
+      "id": 8,
+      "title": "제주 감성 소품샵 팝업",
+      "date": "2026-01-10 ~ 2026-01-25",
+      "location": "제주 서귀포시",
+      "category": "popup",
+      "image": "images/jeju.jpg",
+      "description": "제주의 따뜻한 감성을 담은 핸드메이드 소품과 특별한 기념품을 만나보세요.",
+      "lat": 33.2505,
+      "lng": 126.5658
+    },
+    {
+      "id": 9,
+      "title": "포항 불빛축제",
+      "date": "2026-07-26 ~ 2026-07-29",
+      "location": "경북 포항 영일대",
+      "category": "festival",
+      "image": "images/pohang.jpg",
+      "description": "영일대 해수욕장을 배경으로 펼쳐지는 여름 밤의 화려한 불꽃 향연.",
+      "lat": 36.0315,
+      "lng": 129.3800
+    },
+    {
+      "id": 10,
+      "title": "잠실 뷰티 체험존",
+      "date": "2026-02-15 ~ 2026-02-28",
+      "location": "서울 잠실",
+      "category": "popup",
+      "image": "images/jamsil.jpg",
+      "description": "최신 K-뷰티 트렌드를 체험하고 다양한 화장품을 테스트할 수 있는 팝업입니다.",
+      "lat": 37.5135,
+      "lng": 127.1001
+    },
+    {
+      "id": 11,
+      "title": "강릉 커피축제",
+      "date": "2026-10-10 ~ 2026-10-13",
+      "location": "강릉 녹색도시체험센터",
+      "category": "festival",
+      "image": "images/gangneung.jpg",
+      "description": "커피의 도시 강릉에서 즐기는 가을 축제. 다양한 커피 문화와 로스터리를 만나보세요.",
+      "lat": 37.7719,
+      "lng": 128.8687
+    },
+    {
+      "id": 12,
+      "title": "대전 성심당 팝업",
+      "date": "2026-03-05 ~ 2026-03-15",
+      "location": "대전역 광장",
+      "category": "popup",
+      "image": "images/daejeon.jpg",
+      "description": "전국적인 명성을 자랑하는 성심당의 인기 빵을 기간 한정으로 만날 수 있는 특별 팝업.",
+      "lat": 36.3323,
+      "lng": 127.4340
+    },
+    {
+      "id": 13,
+      "title": "이천 도자기 축제",
+      "date": "2026-05-01 ~ 2026-05-15",
+      "location": "경기 이천",
+      "category": "festival",
+      "image": "images/icheon.jpg",
+      "description": "전통 도자기의 아름다움을 체험하고 장인의 작품을 감상할 수 있는 축제입니다.",
+      "lat": 37.2872,
+      "lng": 127.4206
+    },
+    {
+      "id": 14,
+      "title": "명동 K-패션 팝업",
+      "date": "2026-03-20 ~ 2026-03-30",
+      "location": "서울 명동",
+      "category": "popup",
+      "image": "images/myeongdong.jpg",
+      "description": "명동 중심가에서 열리는 신진 디자이너들의 패션 팝업스토어.",
+      "lat": 37.5633,
+      "lng": 126.9839
+    },
+    {
+      "id": 15,
+      "title": "무주 반딧불 축제",
+      "date": "2026-08-28 ~ 2026-09-05",
+      "location": "전북 무주",
+      "category": "festival",
+      "image": "images/muju.jpg",
+      "description": "청정 지역 무주에서 반딧불이와 함께하는 환상적인 여름 밤 축제.",
+      "lat": 35.9525,
+      "lng": 127.8427
+    }
+  ]
+}
