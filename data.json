@@ -47,7 +47,7 @@
     {
       "id": 5,
       "title": "홍대 물총 축제",
-      "date": "2025-12-01 ~ 2025-12-15",
+      "date": "2025-11-01 ~ 2025-11-15",
       "location": "서울 신촌",
       "category": "festival",
       "image": "images/신촌.jpg",
@@ -80,7 +80,7 @@
     {
       "id": 8,
       "title": "제주 감성 소품샵 팝업",
-      "date": "2026-01-10 ~ 2026-01-25",
+      "date": "2025-01-10 ~ 2026-01-25",
       "location": "제주 서귀포시",
       "category": "popup",
       "image": "images/jeju.jpg",
@@ -102,7 +102,7 @@
     {
       "id": 10,
       "title": "잠실 뷰티 체험존",
-      "date": "2026-02-15 ~ 2026-02-28",
+      "date": "2025-02-15 ~ 2026-02-28",
       "location": "서울 잠실",
       "category": "popup",
       "image": "images/jamsil.jpg",
@@ -113,7 +113,7 @@
     {
       "id": 11,
       "title": "강릉 커피축제",
-      "date": "2026-10-10 ~ 2026-10-13",
+      "date": "2025-11-10 ~ 2025-12-13",
       "location": "강릉 녹색도시체험센터",
       "category": "festival",
       "image": "images/gangneung.jpg",
@@ -124,7 +124,7 @@
     {
       "id": 12,
       "title": "대전 성심당 팝업",
-      "date": "2026-03-05 ~ 2026-03-15",
+      "date": "2025-03-05 ~ 2026-03-15",
       "location": "대전역 광장",
       "category": "popup",
       "image": "images/daejeon.jpg",
@@ -146,7 +146,7 @@
     {
       "id": 14,
       "title": "명동 K-패션 팝업",
-      "date": "2026-03-20 ~ 2026-03-30",
+      "date": "2025-03-20 ~ 2026-03-30",
       "location": "서울 명동",
       "category": "popup",
       "image": "images/myeongdong.jpg",
@@ -157,7 +157,7 @@
     {
       "id": 15,
       "title": "무주 반딧불 축제",
-      "date": "2026-08-28 ~ 2026-09-05",
+      "date": "2025-08-28 ~ 2026-09-05",
       "location": "전북 무주",
       "category": "festival",
       "image": "images/muju.jpg",
