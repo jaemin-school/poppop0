@@ -1,12 +1,12 @@
-// map.js 파일 (하단 네비게이션 기능 연결 로직 추가)
+// map.js 파일 
 document.addEventListener("DOMContentLoaded", () => {
     
-    // ✨ 하단 네비게이션 요소 가져오기
+    // 하단 네비게이션 요소 가져오기
     const mobileNavItems = document.querySelectorAll('#mobile-nav .nav-item');
 
-    // 1. Kakao Maps API 로드 보장 (기존과 동일)
+    // 1. Kakao Maps API 로드 보장 
     kakao.maps.load(async () => {
-        // 2. Geolocation API를 사용하여 현재 위치 가져오기 (기존과 동일)
+        // 2. Geolocation API를 사용하여 현재 위치 가져오기 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 지도 초기화 함수 (기존과 동일)
+    // 지도 초기화 함수 
     function initMap(lat, lng) {
         const mapContainer = document.getElementById('map');
         const mapOption = {
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 5. 주변 이벤트 필터링 및 지도 표시 로직 (기존과 동일)
+    // 5. 주변 이벤트 필터링 및 지도 표시 로직 
     async function loadAndFilterNearbyEvents(userLat, userLng) {
         const res = await fetch('data.json');
         const data = await res.json();
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // 마커 생성 및 정보창 리스너 연결 (기존과 동일)
+        // 마커 생성 및 정보창 리스너 연결 
         nearbyEvents.forEach(event => {
             const markerPosition = new kakao.maps.LatLng(event.lat, event.lng);
 
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.map.setCenter(new kakao.maps.LatLng(userLat, userLng));
         window.map.setLevel(5); 
         
-        // 목록 영역 업데이트 (기존과 동일)
+        // 목록 영역 업데이트 
         nearbyList.innerHTML = `
             <h3>${radiusKm}km 이내 이벤트 (${nearbyEvents.length}개)</h3>
             ${nearbyEvents.map(event => `
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
     }
 
-    // ✨ 6. 하단 네비게이션 버튼에 이벤트 리스너 추가 (새로 추가)
+    // 6. 하단 네비게이션 버튼에 이벤트 리스너 추가 
     mobileNavItems.forEach(item => {
         item.addEventListener('click', (e) => {
             const nav = item.getAttribute('data-nav');

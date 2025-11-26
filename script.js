@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextButton = document.querySelector('.slider-control.next');
     // -------------------------
 
-    // 2. 찜 목록 관리 함수 (기존과 동일)
+    // 2. 찜 목록 관리 함수 
     const loadFavorites = () => {
         const storedFavorites = localStorage.getItem('eventFavorites');
         favorites = storedFavorites ? JSON.parse(storedFavorites) : [];
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderEvents(); 
     };
 
-    // 3. 데이터 로드 함수 (기존과 동일)
+    // 3. 데이터 로드 함수 
     async function loadData() {
         try {
             const res = await fetch('data.json');
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 4. 날짜 헬퍼 함수 (기존과 동일)
+    // 4. 날짜 헬퍼 함수 
     const parseDate = (dateStr) => {
         const parts = dateStr.includes('~') ? dateStr.split('~') : [dateStr, dateStr];
         const startDate = new Date(parts[0].trim());
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return { start, end };
     };
     
-    // 5. 복합 정렬 함수 (기존과 동일)
+    // 5. 복합 정렬 함수 
     const sortEventsByStatusAndDate = (a, b) => {
         const statusA = getEventStatus(a);
         const statusB = getEventStatus(b);
@@ -222,7 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // 7. 이벤트 렌더링 함수 (기존과 동일)
+    // 7. 이벤트 렌더링 함수 
     function renderEvents() {
         
         // 뷰 클래스 토글 및 요소 가시성 제어

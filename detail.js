@@ -1,4 +1,4 @@
-// detail.js 파일 (하단 내비게이션 바 기능 연결 및 'MY' 제거 반영)
+// detail.js 파일 
 document.addEventListener("DOMContentLoaded", async () => {
     // 1. URL에서 이벤트 ID를 가져옵니다.
     const urlParams = new URLSearchParams(window.location.search);
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
     }
 
-    // 2. 데이터 및 리뷰 로직 (기존과 동일)
+    // 2. 데이터 및 리뷰 로직 
     const res = await fetch('data.json');
     const data = await res.json();
     const eventData = data.events;
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
 
     if (event) {
-        // HTML 템플릿 렌더링 (기존과 동일)
+        // HTML 템플릿 렌더링 
         const detailContainer = document.getElementById('detail-container');
         detailContainer.innerHTML = `
             <div class="detail-card">
@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (globalMapDiv) globalMapDiv.style.display = 'none';
         
         
-        // ✨ 6. 하단 내비게이션 버튼 이벤트 연결 (핵심)
+        //  6. 하단 내비게이션 버튼 이벤트 연결 (핵심)
         mobileNavItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 const nav = item.getAttribute('data-nav');
