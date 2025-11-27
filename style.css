@@ -194,7 +194,7 @@ body.mydining-view .event-list-grid {
 body.mydining-view .event-card { text-align: left; display: flex; gap: 1rem; padding: 10px; }
 body.mydining-view .event-card img { width: 150px; height: 150px; flex-shrink: 0; border-radius: 8px; }
 body.mydining-view .event-card-content { flex-grow: 1; padding-top: 5px; text-align: left; }
-body.mydining-view .favorite-icon { position: absolute; top: 15px; left: 170px; }
+
 body.mydining-view .status-tag { position: absolute; top: 15px; right: 15px; }
 
 body.mydining-view .main-banner-container, 
