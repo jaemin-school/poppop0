@@ -102,7 +102,7 @@
     {
       "id": 10,
       "title": "잠실 뷰티 체험존",
-      "date": "2025-02-15 ~ 2026-02-28",
+      "date": "2025-02-15 ~ 2025-11-28",
       "location": "서울 잠실",
       "category": "popup",
       "image": "images/jamsil.jpg",
@@ -146,7 +146,7 @@
     {
       "id": 14,
       "title": "명동 K-패션 팝업",
-      "date": "2025-03-20 ~ 2026-03-30",
+      "date": "2025-03-20 ~ 2025-11-27",
       "location": "서울 명동",
       "category": "popup",
       "image": "images/myeongdong.jpg",
