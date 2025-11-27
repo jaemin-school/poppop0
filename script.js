@@ -206,14 +206,14 @@ document.addEventListener("DOMContentLoaded", () => {
         prevButton.addEventListener('click', showPrevSlide);
         
         if (selectedSliderImages.length > 1) {
-             slideInterval = setInterval(showNextSlide, 5000); // ✨ 5000ms (5초)로 설정
+             slideInterval = setInterval(showNextSlide, 10000); // ✨ 5000ms (5초)로 설정
              prevButton.style.display = 'block';
              nextButton.style.display = 'block';
              const sliderContainer = document.querySelector('.image-slider');
              if (sliderContainer) {
                  sliderContainer.addEventListener('mouseover', () => clearInterval(slideInterval));
                  sliderContainer.addEventListener('mouseleave', () => {
-                     slideInterval = setInterval(showNextSlide, 5000); // ✨ 5000ms (5초)로 설정
+                     slideInterval = setInterval(showNextSlide, 10000); // ✨ 5000ms (5초)로 설정
                  });
              }
         } else {
