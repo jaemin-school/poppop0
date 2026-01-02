@@ -164,6 +164,228 @@
       "description": "청정 지역 무주에서 반딧불이와 함께하는 환상적인 여름 밤 축제.",
       "lat": 35.9525,
       "lng": 127.8427
+    },
+    
+    {
+      "id": 16,
+      "category": "popup",
+      "title": "성수동 잔망루피 플래그십",
+      "date": "2026-01-02 ~ 2026-01-31",
+      "location": "서울 성동구 연무장길 33",
+      "image": "images/loopy.jpg",
+      "lat": 37.5452,
+      "lng": 127.0528,
+      "description": "Z세대 최고의 인기 캐릭터 루피의 오프라인 팝업! 한정판 봉제 인형과 랜덤 피규어를 만나보세요."
+    },
+    {
+      "id": 17,
+      "category": "festival",
+      "title": "인제 빙어 축제",
+      "date": "2026-01-18 ~ 2026-02-02",
+      "location": "강원 인제군 남면 부평리 555-2",
+      "image": "images/inje.jpg",
+      "lat": 37.9831,
+      "lng": 128.1822,
+      "description": "겨울 전령사 빙어를 낚는 즐거움! 소양호 광활한 벌판에서 즐기는 겨울 대표 가족 축제입니다."
+    },
+    {
+      "id": 18,
+      "category": "popup",
+      "title": "부산 전포 카페거리 디저트 페어",
+      "date": "2026-01-10 ~ 2026-01-12",
+      "location": "부산 부산진구 전포대로 209",
+      "image": "images/jeonpo.jpg",
+      "lat": 35.1554,
+      "lng": 129.0637,
+      "description": "부산에서 가장 핫한 디저트들이 한자리에! 수제 마카롱과 푸딩 등 인기 베이커리 팝업이 열립니다."
+    },
+    {
+      "id": 19,
+      "category": "festival",
+      "title": "강릉 경포대 해돋이 축제",
+      "date": "2026-01-01 ~ 2026-01-03",
+      "location": "강원 강릉시 경포로 365",
+      "image": "images/gangneung2.jpg",
+      "lat": 37.7952,
+      "lng": 128.9051,
+      "description": "동해안 최고의 일출 명소 경포대. 새해 소망을 기원하는 다양한 문화 행사가 함께 진행됩니다."
+    },
+    {
+      "id": 20,
+      "category": "popup",
+      "title": "잠실 석촌호수 테디베어 팝업",
+      "date": "2026-01-20 ~ 2026-02-14",
+      "location": "서울 송파구 잠실동 47",
+      "image": "images/teddy.jpg",
+      "lat": 37.5090,
+      "lng": 127.1009,
+      "description": "밸런타인데이 맞이 테디베어 팝업 전시! 대형 곰인형 포토존에서 연인과 함께 추억을 남기세요."
+    },
+    {
+      "id": 21,
+      "category": "festival",
+      "title": "태백산 눈축제",
+      "date": "2026-01-24 ~ 2026-02-02",
+      "location": "강원 태백시 천제단길 162",
+      "image": "images/taebaek.jpg",
+      "lat": 37.1264,
+      "lng": 128.9329,
+      "description": "초대형 눈 조각 작품과 눈꽃 등반 대회가 열리는 하얀 겨울의 축제입니다."
+    },
+    {
+      "id": 22,
+      "category": "popup",
+      "title": "익선동 한옥 와인 팝업",
+      "date": "2026-02-01 ~ 2026-02-28",
+      "location": "서울 종로구 익선동 166-31",
+      "image": "images/iksun.jpg",
+      "lat": 37.5744,
+      "lng": 126.9897,
+      "description": "고즈넉한 한옥에서 즐기는 프리미엄 와인 테이스팅. 소규모 브랜드의 내추럴 와인을 시음해보세요."
+    },
+    {
+      "id": 23,
+      "category": "festival",
+      "title": "제주 서귀포 겨울 바다 수영",
+      "date": "2026-01-05 ~ 2026-01-05",
+      "location": "제주 서귀포시 중문관광로 72",
+      "image": "images/swim.jpg",
+      "lat": 33.2448,
+      "lng": 126.4124,
+      "description": "겨울 바다의 패기! 차가운 바닷물에 몸을 던지며 새해 건강을 다짐하는 이색 축제입니다."
+    },
+    {
+      "id": 24,
+      "category": "popup",
+      "title": "연남동 아날로그 필름 팝업",
+      "date": "2026-01-15 ~ 2026-01-30",
+      "location": "서울 마포구 동교로 262",
+      "image": "images/film.jpg",
+      "lat": 37.5622,
+      "lng": 126.9255,
+      "description": "디지털 시대의 아날로그 감성. 빈티지 카메라 전시와 흑백 사진 인화 서비스를 제공합니다."
+    },
+    {
+      "id": 25,
+      "category": "festival",
+      "title": "청양 칠갑산 얼음분수 축제",
+      "date": "2026-01-01 ~ 2026-02-16",
+      "location": "충남 청양군 정산면 천장호길 175-11",
+      "image": "images/ice_fountain.jpg",
+      "lat": 36.4348,
+      "lng": 126.9189,
+      "description": "거대한 얼음 분수와 조각들이 만드는 겨울 왕국! 눈썰매와 얼음 봅슬레이를 즐겨보세요."
+    },
+    {
+      "id": 26,
+      "category": "popup",
+      "title": "수원 행궁동 레트로 오락실",
+      "date": "2026-01-08 ~ 2026-01-22",
+      "location": "경기 수원시 팔달구 화서문로 45",
+      "image": "images/arcade.jpg",
+      "lat": 37.2847,
+      "lng": 127.0142,
+      "description": "8090 추억 속으로! 클래식 아케이드 게임과 레트로 불량식품 시식 등 즐거움이 가득합니다."
+    },
+    {
+      "id": 27,
+      "category": "festival",
+      "title": "보성 차밭 빛축제",
+      "date": "2025-12-28 ~ 2026-01-12",
+      "location": "전남 보성군 보성읍 녹차로 775",
+      "image": "images/boseong.jpg",
+      "lat": 34.7176,
+      "lng": 127.0805,
+      "description": "초록빛 차밭이 화려한 은하수로 변신! 야간 경관 조명과 다양한 체험 행사가 운영됩니다."
+    },
+    {
+      "id": 28,
+      "category": "popup",
+      "title": "망원동 소품샵 연합 팝업",
+      "date": "2026-02-05 ~ 2026-02-15",
+      "location": "서울 마포구 포은로 105",
+      "image": "images/mangwon.jpg",
+      "lat": 37.5562,
+      "lng": 126.9015,
+      "description": "망원동의 인기 소품샵들이 한곳에 모였습니다. 아기자기한 핸드메이드 굿즈를 쇼핑하세요."
+    },
+    {
+      "id": 29,
+      "category": "festival",
+      "title": "순천만 국가정원 눈꽃 축제",
+      "date": "2026-01-12 ~ 2026-01-26",
+      "location": "전남 순천시 국가정원1호길 162",
+      "image": "images/suncheon.jpg",
+      "lat": 34.9312,
+      "lng": 127.5028,
+      "description": "겨울의 정원도 아름답다! 야간 퍼레이드와 겨울 감성의 가든 공연이 매일 밤 펼쳐집니다."
+    },
+    {
+      "id": 30,
+      "category": "popup",
+      "title": "대구 동성로 스포츠 브랜드 팝업",
+      "date": "2026-01-10 ~ 2026-01-20",
+      "location": "대구 중구 동성로 12",
+      "image": "images/sport.jpg",
+      "lat": 35.8694,
+      "lng": 128.5941,
+      "description": "러닝 애호가들을 위한 체험 팝업! 최신 러닝화 피팅과 발 분석 서비스를 무료로 받아보세요."
+    },
+    {
+      "id": 31,
+      "category": "festival",
+      "title": "울산 간절곶 해맞이 행사",
+      "date": "2026-01-01 ~ 2026-01-01",
+      "location": "울산 울주군 서생면 간절곶1길 39-2",
+      "image": "images/ulsan.jpg",
+      "lat": 35.3524,
+      "lng": 129.3582,
+      "description": "한반도에서 가장 먼저 해가 뜨는 곳. 웅장한 새해 해돋이와 떡국 나눔 행사가 열립니다."
+    },
+    {
+      "id": 32,
+      "category": "popup",
+      "title": "한남동 갤러리 미디어아트 팝업",
+      "date": "2026-01-22 ~ 2026-02-10",
+      "location": "서울 용산구 이태원로 267",
+      "image": "images/gallery.jpg",
+      "lat": 37.5375,
+      "lng": 127.0016,
+      "description": "빛과 소리가 어우러진 몰입형 예술 경험. 신진 작가들의 디지털 아트 컬렉션을 감상하세요."
+    },
+    {
+      "id": 33,
+      "category": "festival",
+      "title": "전주 한옥마을 전통 놀이 축제",
+      "date": "2026-01-29 ~ 2026-01-31",
+      "location": "전북 전주시 완산구 기린대로 99",
+      "image": "images/jeonju.jpg",
+      "lat": 35.8147,
+      "lng": 127.1526,
+      "description": "설 연휴 맞이 민속 축제! 널뛰기, 제기차기 등 전통 놀이 체험과 한복 모델 대회가 진행됩니다."
+    },
+    {
+      "id": 34,
+      "category": "popup",
+      "title": "성수 나만의 향수 만들기 팝업",
+      "date": "2026-02-10 ~ 2026-02-25",
+      "location": "서울 성동구 아차산로 113",
+      "image": "images/perfume.jpg",
+      "lat": 37.5441,
+      "lng": 127.0577,
+      "description": "전문 조향사와 함께 세상에 단 하나뿐인 나의 향기를 조제해보는 힐링 체험 공간입니다."
+    },
+    {
+      "id": 35,
+      "category": "festival",
+      "title": "청도 프로방스 별빛 동화 축제",
+      "date": "2025-12-01 ~ 2026-02-28",
+      "location": "경북 청도군 화양읍 이슬미로 272-23",
+      "image": "images/cheongdo.jpg",
+      "lat": 35.6881,
+      "lng": 128.7153,
+      "description": "수천만 개의 LED 전구가 만드는 화려한 동화 나라! 겨울밤의 로맨틱한 사진 명소입니다."
     }
+
   ]
 }
