@@ -9,10 +9,13 @@ body {
   font-size: 16px; 
 }
 
+/* ✨ 수정: 헤더의 우선순위를 최상위로 올리고 클릭 영역 확보 */
 header {
-  padding: 1.5rem 0.1rem;
-  background-color: white; 
-  border-bottom: 20px solid #FFC72C; 
+    padding: 1.5rem 0.1rem;
+    background-color: white; 
+    border-bottom: 20px solid #FFC72C;
+    position: relative; /* z-index 활성화를 위해 필요 */
+    z-index: 10001 !important; /* 필터(1000)보다 압도적으로 높게 */
 }
 
 header h1 {
@@ -20,11 +23,19 @@ header h1 {
     font-weight: 800; 
     color: #FFC72C; 
     margin: 0;
+    position: relative;
+    z-index: 10002 !important;
+    display: inline-block;
 }
 
 header h1 a {
     text-decoration: none;
     color: inherit;
+    cursor: pointer !important; /* 마우스 손가락 모양 강제 */
+    display: block;
+    position: relative;
+    z-index: 10003 !important;
+    pointer-events: auto !important; /* 클릭 이벤트 강제 활성화 */
 }
 
 header p {
@@ -35,9 +46,16 @@ header p {
 
 /* -------------------- 필터 영역 고정 (Sticky) 스타일 -------------------- */
 .filter-container {
-    display: flex; flex-direction: column; align-items: center; gap: 1rem; padding: 1.5rem 0;
-    margin: 0 auto; position: sticky; top: 0; background-color: white; 
-    z-index: 100; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 0;
+    margin: 0 auto;
+    position: sticky;
+    top: 0;
+    background-color: white; 
+    z-index: 1000; /* 헤더보다 낮게 설정하여 겹침 방지 */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
     max-width: 100%;
 }
@@ -230,16 +248,15 @@ header p {
     position: absolute; 
     top: 8px; 
     right: 8px; 
-    padding: 0.3rem 0.6rem; /* 패딩 유지 */
+    padding: 0.3rem 0.6rem; 
     border-radius: 0.8rem; 
     font-size: 0.7rem; 
     color: white !important; 
     font-weight: bold; 
     z-index: 5;
-    display: inline-block; /* 도형 형태 유지를 위해 추가 */
+    display: inline-block; 
 }
 
-/* 각 상태별 배경색 강제 지정 */
 .status-ongoing { background-color: #28a745 !important; }
 .status-upcoming { background-color: #ffc107 !important; }
 .status-ended { background-color: #dc3545 !important; }

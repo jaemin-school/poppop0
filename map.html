@@ -3,47 +3,150 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>내 주변 이벤트 지도</title>
+    <title>내 주변 이벤트 - PoPPoP</title>
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f36d5acb0b1d93c852f69939b608fdb3&libraries=services&autoload=false"></script>
+    <style>
+        /* 1. 배경 및 전체 레이아웃 */
+        body { background-color: #fcfcfc; color: #333; }
+        .map-wrapper { max-width: 1100px; margin: 0 auto; padding: 20px; padding-bottom: 100px; }
+
+        /* 2. 상단 텍스트 */
+        .map-title-section { text-align: left; margin-bottom: 20px; }
+        .map-title-section h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 5px; }
+        .location-badge { 
+            display: inline-block; background: #fff; border: 1px solid #eee; 
+            padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; color: #666;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* 3. 지도 디자인 (액자 스타일) */
+        .map-frame {
+            position: relative;
+            width: 100%;
+            height: 350px; 
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border: 4px solid #fff;
+            margin-bottom: 25px;
+        }
+        #map { width: 100%; height: 100%; }
+
+        /* 4. 마커 정보 팁 */
+        #event-info-tip {
+            position: absolute; bottom: 15px; left: 15px; right: 15px;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px);
+            padding: 12px; border-radius: 12px; display: none;
+            z-index: 10; border: 1px solid rgba(255, 199, 44, 0.3);
+        }
+
+        /* 5. ✨ 수정: 가로 4열 그리드 리스트 스타일 */
+        .nearby-header { text-align: left; margin-bottom: 12px; }
+        .nearby-header h3 { font-size: 1rem; margin: 0; }
+
+        #nearby-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 무조건 가로 4개 */
+            gap: 10px;
+        }
+
+        .nearby-item {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .nearby-item:hover { transform: translateY(-3px); }
+
+        .nearby-item img {
+            width: 100%;
+            height: 70px; /* 카드가 작으므로 이미지 높이 축소 */
+            object-fit: cover;
+        }
+
+        .nearby-info {
+            padding: 6px;
+            text-align: left;
+        }
+
+        .nearby-info h4 {
+            margin: 0;
+            font-size: 0.75rem;
+            color: #333;
+            /* 제목 한 줄로 자르기 */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .distance-tag {
+            font-size: 0.65rem;
+            color: #FFC72C;
+            font-weight: bold;
+            margin-top: 2px;
+        }
+
+        /* 6. 내비게이션 바 */
+        #mobile-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%; 
+            background: white; border-top: 1px solid #eee;
+            display: flex; justify-content: space-around; padding: 10px 0;
+            z-index: 9999 !important;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <a href="index.html"><h1>PoPPoP</h1></a>
+        <h1><a href="index.html" style="text-decoration:none; color:#FFC72C;">PoPPoP</a></h1>
     </header>
 
-    <main style="padding-top: 20px;">
-        <div style="max-width: 900px; margin: 0 auto; padding: 0 20px; text-align: left;">
-            <h2>🗺️ 내 주변 이벤트 검색</h2>
-            <p>현재 위치를 기반으로 500km 이내의 이벤트를 표시합니다. </p>
+    <div class="map-wrapper">
+        <section class="map-title-section">
+            <h2>내 주변 핫플 📍</h2>
+            <div class="location-badge">
+                <i class="fas fa-location-arrow"></i> 현재 위치 주변 검색 중
+            </div>
+        </section>
+        
+        <div class="map-frame">
+            <div id="map"></div>
+            <div id="event-info-tip">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div id="tip-text" style="font-weight:bold; font-size:0.85rem;">마커를 클릭해 보세요!</div>
+                    <button id="tip-link" style="background:#FFC72C; border:none; padding:4px 8px; border-radius:5px; font-size:0.7rem; font-weight:bold; cursor:pointer;">이동</button>
+                </div>
+            </div>
         </div>
         
-        <div id="map" style="width:100%; height:500px; margin: 20px 0;"></div>
-        
-        <div id="nearby-list" style="max-width: 900px; margin: 0 auto; padding: 0 20px; text-align: left;">
-            </div>
-    </main>
+        <div class="nearby-header">
+            <h3>📍 가장 가까운 TOP 4</h3>
+        </div>
+
+        <div id="nearby-list"></div>
+    </div>
+
+    <nav id="mobile-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home"></i><span>홈</span>
+        </a>
+        <a href="index.html?view=favorites" class="nav-item">
+            <i class="far fa-bookmark"></i><span>찜</span>
+        </a>
+        <a href="map.html" class="nav-item active">
+            <i class="fas fa-map-marker-alt"></i><span>내 주변</span>
+        </a>
+        <a href="community.html" class="nav-item">
+            <i class="fas fa-comments"></i><span>커뮤니티</span>
+        </a>
+    </nav>
 
     <script src="map.js"></script> 
-    
-    <nav id="mobile-nav">
-      <a href="#" class="nav-item" data-nav="home">
-          <i class="fas fa-home"></i>
-          <span>홈</span>
-      </a>
-      <a href="#" class="nav-item" data-nav="save">
-          <i class="far fa-bookmark"></i>
-          <span>찜</span>
-      </a>
-      <a href="#" class="nav-item active" data-nav="nearby">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>내 주변</span>
-      </a>
-      <a href="#" class="nav-item" data-nav="mydining">
-          <i class="far fa-calendar-alt"></i>
-          <span>종료</span>
-      </a>
-    </nav>
 </body>
 </html>

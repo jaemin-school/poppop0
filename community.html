@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커뮤니티 - PoPPoP</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .community-body { background-color: #f4f4f4; min-height: 100vh; padding-bottom: 80px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; min-height: 100vh; position: relative; text-align: left; } /* 기본 정렬을 왼쪽으로 설정 */
+        
+        /* 헤더 스타일 */
+        .board-header { padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; background: #fff; position: sticky; top: 0; z-index: 10; }
+        .board-header h2 { margin: 0; font-size: 1.2rem; text-align: left; }
+
+        /* 게시글 목록 (왼쪽 정렬 강조) */
+        .post-list-item { padding: 15px 20px; border-bottom: 1px solid #f9f9f9; cursor: pointer; transition: 0.2s; text-align: left; }
+        .post-list-item:hover { background-color: #fff9e6; }
+        .post-title { font-size: 1rem; font-weight: 600; margin-bottom: 5px; color: #222; text-align: left; }
+        .post-meta { font-size: 0.8rem; color: #888; display: flex; gap: 10px; justify-content: flex-start; }
+
+        /* 글 상세 보기 섹션 */
+        #view-section { display: none; padding: 20px; text-align: left; }
+        .view-header { border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 15px; text-align: left; }
+        .view-title { font-size: 1.4rem; font-weight: bold; margin-bottom: 10px; text-align: left; }
+        .view-content { line-height: 1.8; color: #333; min-height: 150px; white-space: pre-wrap; margin-bottom: 30px; text-align: left; }
+        
+        /* 댓글 영역 */
+        .comment-section { border-top: 1px solid #eee; padding-top: 20px; margin-top: 20px; text-align: left; }
+        .comment-section h4 { margin-bottom: 15px; font-size: 1rem; color: #444; text-align: left; }
+        .comment-list { margin-bottom: 20px; text-align: left; }
+        .comment-item { background: #f9f9f9; padding: 12px 15px; border-radius: 8px; margin-bottom: 8px; font-size: 0.9rem; text-align: left; }
+        .comment-meta { font-weight: bold; color: #555; margin-bottom: 3px; font-size: 0.8rem; text-align: left; }
+        
+        /* 댓글 입력폼 */
+        .comment-form { display: flex; flex-direction: column; gap: 8px; background: #fff; border: 1px solid #ddd; padding: 10px; border-radius: 8px; }
+        .comment-input-row { display: flex; gap: 8px; }
+        .comment-nickname { width: 100px; padding: 8px; border: 1px solid #eee; border-radius: 4px; font-size: 0.85rem; }
+        .comment-text { flex: 1; padding: 8px; border: 1px solid #eee; border-radius: 4px; font-size: 0.85rem; }
+        .btn-comment-save { background: #FFC72C; border: none; padding: 8px 15px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 0.85rem; }
+
+        /* 글쓰기 섹션 */
+        #write-section { display: none; padding: 20px; text-align: left; }
+        .write-input { width: 100%; border: 1px solid #ddd; border-radius: 8px; padding: 12px; margin-bottom: 10px; font-family: inherit; box-sizing: border-box; text-align: left; }
+        .write-content { height: 250px; resize: none; }
+        
+        /* 버튼 스타일 */
+        .btn-write-float { position: fixed; bottom: 80px; right: 20px; background: #FFC72C; color: #333; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); border: none; cursor: pointer; z-index: 100; font-size: 1.5rem; }
+        .btn-primary { background: #FFC72C; border: none; padding: 8px 16px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+        .btn-secondary { background: #eee; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; }
+        .btn-delete { color: #888; border: none; background: none; text-decoration: underline; font-size: 0.8rem; cursor: pointer; margin-top: 10px; display: block; text-align: left; }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body class="community-body">
+    <header>
+        <h1><a href="index.html">PoPPoP</a></h1>
+    </header>
+
+    <div class="container">
+        <div id="list-section">
+            <div class="board-header">
+                <h2>전체 글 보기</h2>
+                <span id="total-count" style="font-size: 0.8rem; color: #888;"></span>
+            </div>
+            <div id="post-container"></div>
+        </div>
+
+        <div id="view-section">
+            <div class="view-header">
+                <button class="btn-secondary" onclick="toggleView('list')"><i class="fas fa-arrow-left"></i> 목록으로</button>
+                <div id="view-title-display" class="view-title" style="margin-top:20px;"></div>
+                <div id="view-meta-display" class="post-meta"></div>
+                <button class="btn-delete" id="btn-delete-post">이 게시글 삭제</button>
+            </div>
+            <div id="view-content-display" class="view-content"></div>
+            
+            <div class="comment-section">
+                <h4>💬 댓글 <span id="comment-count">0</span></h4>
+                <div id="comment-list" class="comment-list"></div>
+                
+                <div class="comment-form">
+                    <div class="comment-input-row">
+                        <input type="text" id="comment-nickname" class="comment-nickname" placeholder="닉네임">
+                        <input type="text" id="comment-text" class="comment-text" placeholder="따뜻한 댓글을 남겨주세요">
+                        <button class="btn-comment-save" id="btn-comment-save">등록</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="write-section">
+            <div class="board-header">
+                <button class="btn-secondary" onclick="toggleView('list')">취소</button>
+                <h3>글 쓰기</h3>
+                <button class="btn-primary" id="btn-save">등록</button>
+            </div>
+            <div style="padding-top:20px;">
+                <input type="text" id="input-nickname" class="write-input" placeholder="닉네임">
+                <input type="text" id="input-title" class="write-input" placeholder="제목을 입력하세요">
+                <textarea id="input-content" class="write-input write-content" placeholder="내용을 입력하세요"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn-write-float" id="btn-go-write" onclick="toggleView('write')"><i class="fas fa-pen"></i></button>
+
+    <nav id="mobile-nav">
+        <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span>홈</span></a>
+        <a href="index.html" class="nav-item"><i class="far fa-bookmark"></i><span>찜</span></a>
+        <a href="map.html" class="nav-item"><i class="fas fa-map-marker-alt"></i><span>내 주변</span></a>
+        <a href="community.html" class="nav-item active"><i class="fas fa-comments"></i><span>커뮤니티</span></a>
+    </nav>
+
+    <script>
+        let currentViewingPostId = null;
+
+        function toggleView(view) {
+            document.getElementById('list-section').style.display = view === 'list' ? 'block' : 'none';
+            document.getElementById('write-section').style.display = view === 'write' ? 'block' : 'none';
+            document.getElementById('view-section').style.display = view === 'view' ? 'block' : 'none';
+            document.getElementById('btn-go-write').classList.toggle('hidden', view !== 'list');
+            if(view === 'list') loadPosts();
+        }
+
+        function loadPosts() {
+            const posts = JSON.parse(localStorage.getItem('community_posts') || '[]');
+            document.getElementById('total-count').innerText = `총 ${posts.length}개`;
+            const container = document.getElementById('post-container');
+            
+            if (posts.length === 0) {
+                container.innerHTML = '<p style="text-align:center; padding: 50px; color:#aaa;">게시글이 없습니다.</p>';
+                return;
+            }
+
+            container.innerHTML = posts.slice().reverse().map(post => `
+                <div class="post-list-item" onclick="viewPost(${post.id})">
+                    <div class="post-title">${post.title}</div>
+                    <div class="post-meta">
+                        <span>👤 ${post.nickname}</span>
+                        <span>⏰ ${post.date}</span>
+                        <span>💬 ${post.comments ? post.comments.length : 0}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function viewPost(postId) {
+            const posts = JSON.parse(localStorage.getItem('community_posts') || '[]');
+            const post = posts.find(p => p.id === postId);
+            if (!post) return;
+
+            currentViewingPostId = postId;
+            document.getElementById('view-title-display').innerText = post.title;
+            document.getElementById('view-meta-display').innerText = `👤 ${post.nickname} | ⏰ ${post.date}`;
+            document.getElementById('view-content-display').innerText = post.content;
+            
+            loadComments(post.comments || []);
+            toggleView('view');
+            window.scrollTo(0, 0); // 상세 보기 시 최상단으로 이동
+        }
+
+        function loadComments(comments) {
+            const list = document.getElementById('comment-list');
+            document.getElementById('comment-count').innerText = comments.length;
+            
+            if (comments.length === 0) {
+                list.innerHTML = '<p style="font-size:0.8rem; color:#aaa; margin:10px 0; text-align:left;">첫 댓글을 남겨보세요!</p>';
+                return;
+            }
+
+            list.innerHTML = comments.map(c => `
+                <div class="comment-item">
+                    <div class="comment-meta">${c.nickname}</div>
+                    <div>${c.text}</div>
+                </div>
+            `).join('');
+        }
+
+        document.getElementById('btn-comment-save').onclick = () => {
+            const nickname = document.getElementById('comment-nickname').value.trim();
+            const text = document.getElementById('comment-text').value.trim();
+            if (!nickname || !text) return;
+
+            let posts = JSON.parse(localStorage.getItem('community_posts') || '[]');
+            const postIndex = posts.findIndex(p => p.id === currentViewingPostId);
+            
+            if (postIndex > -1) {
+                if (!posts[postIndex].comments) posts[postIndex].comments = [];
+                posts[postIndex].comments.push({ nickname, text, date: new Date().toLocaleDateString() });
+                localStorage.setItem('community_posts', JSON.stringify(posts));
+                document.getElementById('comment-nickname').value = '';
+                document.getElementById('comment-text').value = '';
+                loadComments(posts[postIndex].comments);
+            }
+        };
+
+        document.getElementById('btn-save').onclick = () => {
+            const nickname = document.getElementById('input-nickname').value.trim();
+            const title = document.getElementById('input-title').value.trim();
+            const content = document.getElementById('input-content').value.trim();
+
+            if (!nickname || !title || !content) { alert("내용을 입력해주세요!"); return; }
+
+            const posts = JSON.parse(localStorage.getItem('community_posts') || '[]');
+            posts.push({ nickname, title, content, date: new Date().toLocaleDateString(), id: Date.now(), comments: [] });
+            localStorage.setItem('community_posts', JSON.stringify(posts));
+
+            document.getElementById('input-nickname').value = '';
+            document.getElementById('input-title').value = '';
+            document.getElementById('input-content').value = '';
+            toggleView('list');
+        };
+
+        document.getElementById('btn-delete-post').onclick = () => {
+            if (!confirm("게시글을 삭제하시겠습니까?")) return;
+            let posts = JSON.parse(localStorage.getItem('community_posts') || '[]');
+            posts = posts.filter(p => p.id !== currentViewingPostId);
+            localStorage.setItem('community_posts', JSON.stringify(posts));
+            toggleView('list');
+        };
+
+        loadPosts();
+    </script>
+</body>
+</html>
