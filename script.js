@@ -239,7 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
             finalHtml += `<h2 class="content-section-title">🔥 인기 TOP 4 이벤트</h2>`;
             finalHtml += `<div class="event-list-grid">${createEventHtml(top4)}</div>`;
 
-            // ✨ 예정 이벤트 헤더와 '더보기/접기' 토글 버튼
+            //  예정 이벤트 헤더와 '더보기/접기' 토글 버튼
             finalHtml += `
                 <div style="display: flex; justify-content: space-between; align-items: flex-end; max-width: 1200px; margin: 2.5rem auto 1rem auto; padding: 0 2rem; border-bottom: 2px solid #FFC72C; padding-bottom: 8px;">
                     <h2 style="margin: 0; font-size: 1.8rem; font-weight: 700; color: #333;">📅 다가오는 예정 이벤트</h2>
@@ -252,7 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
             finalHtml += `<div class="event-list-grid">${createEventHtml(remaining)}</div>`;
             eventList.innerHTML = finalHtml;
 
-            // ✨ 토글 리스너 바인딩
+            //  토글 리스너 바인딩
             const toggleBtn = document.getElementById('btn-toggle-upcoming');
             if (toggleBtn) {
                 toggleBtn.onclick = () => {

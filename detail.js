@@ -1,4 +1,3 @@
-// detail.js 파일 전체
 document.addEventListener("DOMContentLoaded", async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const eventId = urlParams.get('id');
@@ -63,7 +62,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
 
     if (event) {
-        // detail.js 내 formatDescription 함수 부분 수정
+        // formatDescription 함수 부분 수정
 const formatDescription = (text) => {
     if (!text) return "";
     
@@ -72,7 +71,7 @@ const formatDescription = (text) => {
     return sections.map(section => {
         const trimmed = section.trim();
 
-        // [제목] 처리: 볼드를 빼고 부드럽게 출력
+        // [제목] 처리
         if (trimmed.startsWith('[')) {
             const title = trimmed.replace(/[\[\]]/g, '');
             return `<h4 class="desc-section-title">${title}</h4>`;

@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        // ✨ 거리순 정렬 후 상위 4개 추출
+        //  거리순 정렬 후 상위 4개 추출
         nearbyEvents.sort((a, b) => a.distanceNum - b.distanceNum);
         const top4Events = nearbyEvents.slice(0, 4);
         
@@ -111,8 +111,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // 5. ✨ 하단 목록 UI (4개 가로 그리드 최적화)
-        // 불필요한 태그와 ' 문자를 제거하여 깔끔하게 출력합니다.
+        // 5.  하단 목록 UI 
+        // 불필요한 태그와 ' 문자를 제거하여 깔끔하게 출력
         nearbyList.innerHTML = top4Events.map(event => `
             <div class="nearby-item" onclick="location.href='detail.html?id=${event.id}'">
                 <img src="${event.image}" alt="${event.title}">
