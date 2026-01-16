@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // 7. 이벤트 렌더링 함수 (더보기/접기 토글 포함)
+    // 메인 렌더링 함수: 필터 및 정렬 상태에 따라 화면 재구성
     function renderEvents() {
         if (selectedStatusFilter === 'ended') {
              document.body.classList.add('mydining-view');

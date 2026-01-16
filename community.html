@@ -124,7 +124,7 @@
             document.getElementById('btn-go-write').classList.toggle('hidden', view !== 'list');
             if(view === 'list') loadPosts();
         }
-
+        // 로컬 스토리지에서 게시글 불러오기 및 렌더링
         function loadPosts() {
             const posts = JSON.parse(localStorage.getItem('community_posts') || '[]');
             document.getElementById('total-count').innerText = `총 ${posts.length}개`;
@@ -146,7 +146,7 @@
                 </div>
             `).join('');
         }
-
+        // 특정 게시글 상세 보기
         function viewPost(postId) {
             const posts = JSON.parse(localStorage.getItem('community_posts') || '[]');
             const post = posts.find(p => p.id === postId);
@@ -161,7 +161,7 @@
             toggleView('view');
             window.scrollTo(0, 0); // 상세 보기 시 최상단으로 이동
         }
-
+        // 댓글 리스트 렌더링
         function loadComments(comments) {
             const list = document.getElementById('comment-list');
             document.getElementById('comment-count').innerText = comments.length;
@@ -179,6 +179,7 @@
             `).join('');
         }
 
+        // 댓글 저장 로직
         document.getElementById('btn-comment-save').onclick = () => {
             const nickname = document.getElementById('comment-nickname').value.trim();
             const text = document.getElementById('comment-text').value.trim();
@@ -197,6 +198,7 @@
             }
         };
 
+        // 새 게시글 저장 로직
         document.getElementById('btn-save').onclick = () => {
             const nickname = document.getElementById('input-nickname').value.trim();
             const title = document.getElementById('input-title').value.trim();
@@ -213,7 +215,8 @@
             document.getElementById('input-content').value = '';
             toggleView('list');
         };
-
+        
+        // 게시글 삭제 로직
         document.getElementById('btn-delete-post').onclick = () => {
             if (!confirm("게시글을 삭제하시겠습니까?")) return;
             let posts = JSON.parse(localStorage.getItem('community_posts') || '[]');

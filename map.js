@@ -1,4 +1,3 @@
-// map.js 파일
 document.addEventListener("DOMContentLoaded", () => {
     
     const mobileNavItems = document.querySelectorAll('#mobile-nav .nav-item');
